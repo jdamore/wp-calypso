@@ -154,8 +154,8 @@ const DesignPreview = React.createClass( {
 	},
 
 	render() {
-		return config.isEnabled( 'preview-endpoint' ) ? 
-			(
+		return config.isEnabled( 'preview-endpoint' )
+			? (
 				<WebPreview
 					className={ this.props.className }
 					showExternal={ true }
@@ -178,6 +178,7 @@ const DesignPreview = React.createClass( {
 					showClose={ this.props.showClose }
 					showPreview={ this.props.showPreview }
 					defaultViewportDevice={ this.props.defaultViewportDevice }
+					onClose={ this.onClosePreview }
 				>
 					{ this.props.children }
 				</WebPreview>
