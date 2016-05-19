@@ -177,6 +177,7 @@ const DesignPreview = React.createClass( {
 					previewUrl={ this.props.selectedSite ? this.props.selectedSite.URL + '?iframe=true&theme_preview=true' : '' }
 					showClose={ this.props.showClose }
 					showPreview={ this.props.showPreview }
+					externalUrl={ this.props.selectedSite ? this.props.selectedSite.URL : '' }
 					defaultViewportDevice={ this.props.defaultViewportDevice }
 					onClose={ this.onClosePreview }
 				>
