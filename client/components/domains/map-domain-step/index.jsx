@@ -68,6 +68,7 @@ var MapDomainStep = React.createClass( {
 					</div>
 
 					<DomainProductPrice
+						isPremiumRequired
 						price={ price }
 						cart={ this.props.cart } />
 

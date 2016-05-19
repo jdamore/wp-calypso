@@ -16,10 +16,18 @@ var PremiumPopover = require( 'components/plans/premium-popover' ),
 const domainsWithPlansOnlyTestEnabled = abtest( 'domainsWithPlansOnly' ) === 'plansOnly';
 
 var DomainProductPrice = React.createClass( {
+	propTypes: {
+		hasLoadedFromServer: React.PropTypes.bool,
+		isPremiumRequired: React.PropTypes.bool,
+		cart: React.PropTypes.object.isRequired,
+		price: React.PropTypes.oneOfType( [ React.PropTypes.string, React.PropTypes.number ] ).isRequired
+	},
 	shouldShowPremiumMessage: function() {
-		const selectedSite = sitesList.getSelectedSite();
-		return domainsWithPlansOnlyTestEnabled && ! ( selectedSite && isPlan( selectedSite.plan ) ) && this.props.price;
-	}, subMessage() {
+		const selectedSite = sitesList.getSelectedSite(),
+			{ isPremiumRequired, price } = this.props;
+		return isPremiumRequired && domainsWithPlansOnlyTestEnabled && ! ( selectedSite && isPlan( selectedSite.plan ) ) && price;
+	},
+	subMessage() {
 		var freeWithPlan = this.props.cart && this.props.cart.hasLoadedFromServer && this.props.cart.next_domain_is_free && ! this.props.isFinalPrice;
 		if ( freeWithPlan ) {
 			return <span className="domain-product-price__free-text">{ this.translate( 'Free with your plan' ) }</span>;
@@ -43,10 +51,9 @@ var DomainProductPrice = React.createClass( {
 		} );
 	},
 	priceText() {
-		const selectedSite = sitesList.getSelectedSite();
 		if ( ! this.props.price ) {
 			return this.translate( 'Free' );
-		} else if ( domainsWithPlansOnlyTestEnabled && ! cartItems.isNextDomainFree( this.props.cart ) && ( ! selectedSite || ! isPlan( selectedSite.plan ) ) ) {
+		} else if ( this.shouldShowPremiumMessage() ) {
 			return null;
 		}
 		return this.priceMessage( this.props.price );
