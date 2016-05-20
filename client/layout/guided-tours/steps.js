@@ -115,7 +115,7 @@ class ActionStep extends Component {
 		const { targetSlug = false, onNext } = this.props;
 		const target = targetForSlug( targetSlug );
 
-		if ( onNext && target.addEventListener ) {
+		if ( onNext && target && target.addEventListener ) {
 			target.addEventListener( 'click', onNext );
 		}
 		target && target.classList.add( 'guided-tours__overlay' );
@@ -125,7 +125,7 @@ class ActionStep extends Component {
 		const { targetSlug = false, onNext } = this.props;
 		const target = targetForSlug( targetSlug );
 
-		if ( onNext && target.removeEventListener ) {
+		if ( onNext && target && target.removeEventListener ) {
 			target.removeEventListener( 'click', onNext );
 		}
 		target && target.classList.remove( 'guided-tours__overlay' );
