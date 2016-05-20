@@ -14,6 +14,7 @@ import { getSite, getSiteSlug } from 'state/sites/selectors';
 import { getDomainsSuggestions, } from 'state/domains/suggestions/selectors';
 import QueryDomainsSuggestions from 'components/data/query-domains-suggestions';
 import UpgradeNudge from 'my-sites/upgrade-nudge';
+import { FEATURE_CUSTOM_DOMAIN } from 'lib/plans/constants';
 
 function getQueryObject( site, siteSlug ) {
 	if ( ! site || ! siteSlug ) {
@@ -60,14 +61,14 @@ const DomainTip = React.createClass( {
 					suggestion && <UpgradeNudge
 						shouldDisplay={ this.shouldDisplay }
 						event="domain-tip"
-						feature="custom-domain"
+						feature={ FEATURE_CUSTOM_DOMAIN }
 						title={ this.translate( '{{span}}%(domain)s{{/span}} is available! Upgrade to a Premium Plan to register your domain', {
 							args: { domain: suggestion.domain_name },
 							components: {
 								span: <span className="domain-tip__suggestion" />
 							} } ) }
 						message={ this.translate( 'The Premium Plan includes a free custom domain, powerful customization options, and many other features' ) }
-						href={ `/domains/add/${ this.props.siteSlug }` }
+						href={ `/plans/compare/${ FEATURE_CUSTOM_DOMAIN }/${ this.props.siteSlug }` }
 					/>
 				}
 			</div>
