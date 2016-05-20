@@ -34,6 +34,7 @@ import QueryCurrentTheme from 'components/data/query-current-theme';
 import { getCurrentTheme } from 'state/themes/current-theme/selectors';
 import ThemesSiteSelectorModal from 'my-sites/themes/themes-site-selector-modal';
 import actionLabels from 'my-sites/themes/action-labels';
+import ThemePreview from 'my-sites/themes/theme-preview';
 
 const ThemeSheet = React.createClass( {
 	displayName: 'ThemeSheet',
@@ -112,6 +113,10 @@ const ThemeSheet = React.createClass( {
 			return this.getValidSections()[0];
 		}
 		return section;
+	},
+
+	togglePreview() {
+		this.setState( { showPreview: ! this.state.showPreview } );
 	},
 
 	renderBar() {
@@ -273,6 +278,12 @@ const ThemeSheet = React.createClass( {
 					action={ this.props[ this.state.selectedAction ] }
 					sourcePath={ `/theme/${ this.props.id }/${ section }` }
 				/> }
+				{ this.state.showPreview && <ThemePreview showPreview={ this.state.showPreview }
+					theme={ this.props }
+					onClose={ this.togglePreview }
+					buttonLabel= { 'temp' }
+					onButtonClick={ this.togglePreview } />
+				}
 				<div className="themes__sheet-columns">
 					<div className="themes__sheet-column-left">
 						<HeaderCake className="themes__sheet-action-bar" onClick={ this.onBackClick }>
@@ -291,6 +302,10 @@ const ThemeSheet = React.createClass( {
 					</div>
 					<div className="themes__sheet-column-right">
 						<Card className="themes_sheet-action-bar-spacer"/>
+						<a className="themes__sheet-preview-link" onClick={ this.togglePreview } >
+							<Gridicon icon="external" />
+							{ i18n.translate( 'Live Preview' ) }
+						</a>
 						{ this.renderScreenshot() }
 					</div>
 				</div>
