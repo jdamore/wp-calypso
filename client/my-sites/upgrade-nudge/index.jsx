@@ -25,6 +25,7 @@ export default React.createClass( {
 	displayName: 'UpgradeNudge',
 
 	propTypes: {
+		shouldDisplay: React.PropTypes.func,
 		onClick: React.PropTypes.func,
 		className: React.PropTypes.string,
 		message: React.PropTypes.string,
@@ -39,13 +40,14 @@ export default React.createClass( {
 	getDefaultProps() {
 		return {
 			onClick: noop,
+			shouldDisplay: null,
 			message: 'And get your own domain address.',
 			icon: 'star',
 			event: null,
 			jetpack: false,
 			feature: false,
 			compact: false
-		}
+		};
 	},
 
 	handleClick() {
@@ -59,7 +61,10 @@ export default React.createClass( {
 	},
 
 	shouldDisplay( site ) {
-		const { feature, jetpack } = this.props;
+		const { feature, jetpack, shouldDisplay } = this.props;
+		if ( shouldDisplay ) {
+			return shouldDisplay();
+		}
 		if ( ! site ) {
 			return false;
 		}
