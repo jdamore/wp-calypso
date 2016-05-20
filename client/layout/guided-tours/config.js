@@ -39,11 +39,19 @@ function get() {
 			type: 'ActionStep',
 			placement: 'beside',
 			icon: 'my-sites',
-			text: i18n.translate( "{{strong}}Preview:{{/strong}} Click here anytime to see what your site looks like.", {
+			text: i18n.translate( '{{strong}}Preview:{{/strong}} Click here to see what your site looks like.', {
 				components: {
 					strong: <strong />,
 				}
 			} ),
+			next: 'close-preview',
+		},
+		'close-preview': {
+			target: 'web-preview__close',
+			type: 'ActionStep',
+			placement: 'beside',
+			icon: 'my-sites',
+			text: i18n.translate( 'Take a look at your site—and then close the site preview. You can come back here anytime.' ),
 			next: 'sidebar',
 		},
 		sidebar: {
