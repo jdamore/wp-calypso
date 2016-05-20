@@ -215,8 +215,8 @@ export default React.createClass( {
 			<div className={ siteClass }>
 				{ ! this.state.showMoreActions
 					? <a className="site__content"
-							data-tip-target="site-card-preview"
 							href={ this.props.homeLink ? site.URL : this.props.href }
+							data-tip-target={ this.props.tipTarget }
 							target={ this.props.externalLink && ! this.state.showMoreActions && '_blank' }
 							title={ this.props.homeLink
 								? this.translate( 'Visit "%(title)s"', { args: { title: site.title } } )
