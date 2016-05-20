@@ -692,6 +692,11 @@ module.exports = React.createClass( {
 		page( '/posts/drafts' + this.siteSuffix() );
 	},
 
+	previewSite( event ) {
+		event.preventDefault();
+		this.props.layoutFocus.set( 'preview' );
+	},
+
 	render: function() {
 		var publish = !! this.publish(),
 			appearance = ( !! this.themes() || !! this.menus() ),
@@ -703,6 +708,7 @@ module.exports = React.createClass( {
 				<CurrentSite
 					sites={ this.props.sites }
 					siteCount={ this.props.user.get().visible_site_count }
+					onClick={ this.previewSite }
 				/>
 				<SidebarMenu>
 					<ul>
