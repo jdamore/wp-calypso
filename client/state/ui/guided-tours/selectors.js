@@ -30,6 +30,7 @@ export const getGuidedTourState = createSelector(
 		const tourState = getRawGuidedTourState( state );
 		const { shouldReallyShow, stepName = '' } = tourState;
 		const stepConfig = getToursConfig()[ stepName ] || false;
+		const nextStepConfig = getToursConfig()[ stepConfig.next ] || false;
 
 		const shouldShow = (
 			// the Preview step requires a selected site
@@ -40,6 +41,7 @@ export const getGuidedTourState = createSelector(
 
 		return Object.assign( {}, tourState, {
 			stepConfig,
+			nextStepConfig,
 			shouldShow,
 		} );
 	},

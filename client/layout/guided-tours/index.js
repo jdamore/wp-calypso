@@ -60,11 +60,12 @@ class GuidedTours extends Component {
 
 	next() {
 		const nextStepName = this.props.tourState.stepConfig.next;
+		const nextStepConfig = this.props.tourState.nextStepConfig;
+
 		const predicate = () => {
 			console.log( 'predicate' );
-			const { stepConfig } = this.props.tourState;
-			if ( stepConfig && stepConfig.target === 'my-sites' ) {
-				const target = this.getTipTargets()['site-card-preview'];
+			if ( nextStepConfig && nextStepConfig.target ) {
+				const target = this.getTipTargets()[nextStepConfig.target];
 				console.log( target && target.getBoundingClientRect() );
 				return target && target.getBoundingClientRect().left >= 0;
 			}
