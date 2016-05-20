@@ -61,8 +61,12 @@ const DomainTip = React.createClass( {
 						shouldDisplay={ this.shouldDisplay }
 						event="domain-tip"
 						feature="custom-domain"
-						title={ this.translate( 'Get more readers by adding a custom domain name like %(domain)s.', { args: { domain: suggestion.domain_name } } ) }
-						message={ this.translate( 'Personalize your site with its own unique web address. Register %(domain)s for free with a Premium Plan', { args: { domain: suggestion.domain_name } } ) }
+						title={ this.translate( '{{span}}%(domain)s{{/span}} is available! Upgrade to a Premium Plan to register your domain', {
+							args: { domain: suggestion.domain_name },
+							components: {
+								span: <span className="domain-tip__suggestion" />
+							} } ) }
+						message={ this.translate( 'The Premium Plan includes a free custom domain, powerful customization options, and many other features' ) }
 						href={ `/domains/add/${ this.props.siteSlug }` }
 					/>
 				}
