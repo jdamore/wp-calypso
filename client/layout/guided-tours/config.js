@@ -50,7 +50,7 @@ function get() {
 			target: 'web-preview__close',
 			type: 'ActionStep',
 			placement: 'beside',
-			icon: 'my-sites',
+			icon: 'cross-small',
 			text: i18n.translate( 'Take a look at your site—and then close the site preview. You can come back here anytime.' ),
 			next: 'sidebar',
 		},
