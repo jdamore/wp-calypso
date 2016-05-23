@@ -32,6 +32,13 @@ function get() {
 					strong: <strong />,
 				}
 			} ),
+			next: 'sidebar',
+		},
+		sidebar: {
+			text: i18n.translate( 'This menu lets you navigate around, and will adapt to give you the tools you need when you need them.' ),
+			type: 'BasicStep',
+			target: 'sidebar',
+			placement: 'beside',
 			next: 'preview',
 		},
 		preview: {
@@ -51,13 +58,6 @@ function get() {
 			placement: 'beside',
 			icon: 'cross-small',
 			text: i18n.translate( 'Take a look at your site—and then close the site preview. You can come back here anytime.' ),
-			next: 'sidebar',
-		},
-		sidebar: {
-			text: i18n.translate( 'This menu lets you navigate around, and will adapt to give you the tools you need when you need them.' ),
-			type: 'BasicStep',
-			target: 'sidebar',
-			placement: 'beside',
 			next: 'themes',
 		},
 		themes: {
