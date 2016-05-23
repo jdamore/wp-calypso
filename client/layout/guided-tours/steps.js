@@ -139,14 +139,19 @@ class ActionStep extends Component {
 
 		const { text } = this.props;
 
+		let components = {};
+		if ( this.props.icon ) {
+			components.gridicon = <Gridicon icon={ this.props.icon } size={ 24 } />
+		} else {
+			components.gridicon = <span className="guided-tours__bullseye-text">○</span>
+		}
+
 		return (
 			<Card className="guided-tours__step" style={ stepCoords } >
 				<p className="guided-tours__step-text">{ text }</p>
 				<p className="guided-tours__bullseye-instructions">
-					{ this.props.translate( 'Click the {{gridicon/}} to continue…', {
-						components: {
-							gridicon: <Gridicon icon={ this.props.icon } size={ 24 } />
-						}
+					{ this.props.translate( 'Click the {{gridicon/}} to continue.', {
+						components: components
 					} ) }
 				</p>
 				<Pointer style={ pointerCoords } />
@@ -176,6 +181,7 @@ ActionStep.propTypes = {
 		PropTypes.string,
 		PropTypes.array
 	] ),
+	icon: PropTypes.string,
 	next: PropTypes.string,
 	onNext: PropTypes.func.isRequired,
 	onQuit: PropTypes.func.isRequired,

@@ -38,7 +38,6 @@ function get() {
 			target: 'site-card-preview',
 			type: 'ActionStep',
 			placement: 'beside',
-			icon: 'my-sites',
 			text: i18n.translate( '{{strong}}Preview:{{/strong}} Click here to see what your site looks like.', {
 				components: {
 					strong: <strong />,
